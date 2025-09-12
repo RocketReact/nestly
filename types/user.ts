@@ -1,10 +1,26 @@
 export interface User {
-  username: string;
-  email: string;
-  avatar: string;
+	id: string;
+	email: string;
+	name: string;
+	avatar?: string;
+	childGender?: "boy" | "girl" | "unknown";
+	deliveryDate?: string;
+	createdAt: Date;
+	updatedAt: Date;
 }
 
-export type RegisterLoginRequest = {
-  email: string;
-  password: string;
-};
+export interface LoginData {
+	email: string;
+	password: string;
+}
+
+export interface RegisterData {
+	name: string;
+	email: string;
+	password: string;
+}
+
+export interface ProfileUpdatePayload {
+	username: string;
+	email: string;
+}

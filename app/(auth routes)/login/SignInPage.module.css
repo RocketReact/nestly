@@ -1,0 +1,72 @@
+.container {
+	display: flex;
+	min-height: 100vh;
+	position: relative;
+	/* justify-content: space-between; */
+}
+
+.logo {
+	position: absolute;
+	top: 20px;
+	left: 20px;
+	z-index: 1000;
+}
+
+.logoLink {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	text-decoration: none;
+	transition: transform 0.2s ease;
+}
+
+.logoLink:hover {
+	transform: scale(1.02);
+}
+
+.logoText {
+	font-size: 24px;
+	font-weight: 700;
+	color: #1f2937;
+	white-space: nowrap;
+}
+
+.formSection {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background: white;
+	padding: 80px 40px 40px;
+}
+
+.imageSection {
+	width: 720px;
+	background: linear-gradient(135deg, #fff7ed 0%, #fed7aa 50%, #fdba74 100%);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	overflow: hidden;
+}
+
+.imageSection img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+@media (max-width: 768px) {
+	.container {
+		flex-direction: column;
+	}
+
+	.imageSection {
+		min-height: 300px;
+	}
+
+	.formSection {
+		padding: 100px 20px 40px;
+	}
+}
