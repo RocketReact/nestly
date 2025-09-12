@@ -6,7 +6,7 @@ import { useState } from "react";
 import { useAuthStore } from "@/lib/store/authStore";
 import { login } from "@/lib/api/clientApi";
 import { ApiError } from "next/dist/server/api-utils";
-import { LoginData } from "@/types/auth";
+import { LoginData } from "@/types/user";
 import Link from "next/link";
 
 const LoginForm = () => {
@@ -18,7 +18,6 @@ const LoginForm = () => {
 		try {
 			const values = Object.fromEntries(formData) as unknown as LoginData;
 			const user = await login(values);
-			console.log(user);
 
 			if (user) {
 				setUser(user);
@@ -87,7 +86,7 @@ const LoginForm = () => {
 
 				<div className={css.registerPrompt}>
 					<span>Немає аккаунту? </span>
-					<Link href="/sign-up" className={css.registerLink}>
+					<Link href="/register" className={css.registerLink}>
 						Зареєструватися
 					</Link>
 				</div>

@@ -1,4 +1,4 @@
-import { RegisterData, User } from "@/types/user";
+import { LoginData, RegisterData, User } from "@/types/user";
 import { api } from "./api";
 import type { CreateNote, Note } from "@/types/note";
 
@@ -46,7 +46,7 @@ export const register = async (data: RegisterData) => {
 	return res.data;
 };
 
-export const login = async (data: RegisterData) => {
+export const login = async (data: LoginData) => {
 	const res = await api.post<User>(`/auth/login`, data);
 	return res.data;
 };
@@ -58,8 +58,8 @@ type CheckSessionRequest = {
 	success: boolean;
 };
 export const checkSession = async () => {
-	const res = await api.get<CheckSessionRequest>("/auth/session");
-	return res.data.success;
+	const { data } = await api.get<CheckSessionRequest>("/auth/session");
+	return data.success;
 };
 
 export const getMe = async () => {
