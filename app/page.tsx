@@ -1,20 +1,20 @@
-"use client";
+// "use client";
 
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
-import { useAuthStore } from "@/lib/store/authStore";
+// import { useEffect } from "react";
+// import { useRouter } from "next/navigation";
+// import { useAuthStore } from "@/lib/store/authStore";
 
 export default function Home() {
-	const router = useRouter();
-	const { isAuthenticated, user } = useAuthStore();
+	// const router = useRouter();
+	// const { isAuthenticated, user } = useAuthStore();
 
-	useEffect(() => {
-		if (isAuthenticated && user) {
-			router.push("/profile");
-		} else if (!isAuthenticated) {
-			router.push("/login");
-		}
-	}, [isAuthenticated, user, router]);
+	// useEffect(() => {
+	// 	if (isAuthenticated && user) {
+	// 		router.push("/profile");
+	// 	} else if (!isAuthenticated) {
+	// 		router.push("/login");
+	// 	}
+	// }, [isAuthenticated, user, router]);
 	return (
 		<div
 			style={{

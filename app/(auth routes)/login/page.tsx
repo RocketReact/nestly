@@ -27,7 +27,7 @@ const SignInPage = () => {
 				<Image
 					src="/sign-in-img.jpg"
 					alt="Яйца в гнезде"
-					width={720}
+					width={820}
 					height={900}
 					priority
 				/>
