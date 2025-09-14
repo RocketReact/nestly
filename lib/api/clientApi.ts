@@ -1,6 +1,7 @@
 import { LoginData, RegisterData, User } from "@/types/user";
-import { api } from "./api";
+
 import type { CreateNote, Note } from "@/types/note";
+import { api } from "@/app/api/api";
 
 interface FetchNotesResponse {
 	notes: Note[];
@@ -41,24 +42,26 @@ export async function deleteNote(id: string): Promise<Note> {
 	return data;
 }
 
-export const register = async (data: RegisterData) => {
-	const res = await api.post<User>(`/auth/register`, data);
-	return res.data;
+export const register = async (registerData: RegisterData) => {
+	const { data } = await api.post("auth/register", registerData);
+	return data;
 };
 
-export const login = async (data: LoginData) => {
-	const res = await api.post<User>(`/auth/login`, data);
-	return res.data;
+export const login = async (loginData: LoginData) => {
+	const { data } = await api.post<User>("auth/login", loginData);
+	return data;
 };
 
-export const logout = async (): Promise<void> => {
-	await api.post(`/auth/logout`);
+export const logout = async () => {
+	await api.post<User>("auth/logout");
 };
+
 type CheckSessionRequest = {
 	success: boolean;
 };
 export const checkSession = async () => {
-	const { data } = await api.get<CheckSessionRequest>("/auth/session");
+	const { data } = await api.get<CheckSessionRequest>("auth/session");
+
 	return data.success;
 };
 
@@ -73,6 +76,6 @@ export type updateProfileProps = {
 };
 
 export const updateProfile = async (data: updateProfileProps) => {
-	const res = await api.patch<User>(`/users/current`, data);
+	const res = await api.patch<User>(`users/current`, data);
 	return res.data;
 };

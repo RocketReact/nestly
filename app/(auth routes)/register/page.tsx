@@ -25,7 +25,7 @@ const SignUpPage = () => {
 
 			<div className={css.imageSection}>
 				<Image
-					src="/sign-up-add.jpg"
+					src="/sign-up-img.jpg"
 					alt="Аисты"
 					width={720}
 					height={900}

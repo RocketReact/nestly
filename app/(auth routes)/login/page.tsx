@@ -25,7 +25,7 @@ const SignInPage = () => {
 
 			<div className={css.imageSection}>
 				<Image
-					src="/sign-up-img.jpg"
+					src="/sign-in-img.jpg"
 					alt="Яйца в гнезде"
 					width={720}
 					height={900}
