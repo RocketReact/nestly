@@ -56,6 +56,7 @@ const ProfileEditForm = ({ userServer }: ProfileEditProps) => {
     actions: FormikHelpers<InitialValues>
   ) => {
     try {
+      console.log(user);
       const updatedUser = await updateProfile(values);
       setUser({
         ...user,

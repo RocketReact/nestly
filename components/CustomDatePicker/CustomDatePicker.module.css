@@ -78,7 +78,7 @@
 
 /* tablet */
 
-@media (max-width: 768px) {
+@media (min-width: 768px) {
 }
 
 /* desktop */
@@ -93,7 +93,7 @@
 .dropdown {
   position: absolute;
   top: -500%;
-  left: 10%;
+  left: 23%;
   z-index: 1000;
   width: 260px;
   background: white;
@@ -204,36 +204,12 @@
 }
 
 .day:hover:not(.dayDisabled) {
-  background-color: #f0f9ff;
-  color: #0ea5e9;
+  background-color: var(--color-scheme-accent);
+  color: white;
 }
 
 .day:active:not(.dayDisabled) {
   background-color: #e0f2fe;
-}
-
-/* Сьогоднішній день */
-.dayToday {
-  background-color: var(--color-scheme-accent);
-  color: white;
-  font-weight: 600;
-}
-
-.dayToday:hover {
-  background-color: var(--color-scheme-accent);
-  color: white;
-}
-
-/* Вибрана дата */
-.daySelected {
-  background-color: var(--color-scheme-accent);
-  color: white;
-  font-weight: 600;
-}
-
-.daySelected:hover {
-  background-color: var(--color-scheme-accent);
-  color: white;
 }
 
 /* Заборонені дати */
@@ -246,4 +222,18 @@
 .dayDisabled:hover {
   color: #cccccc;
   background: transparent;
+}
+
+@media (min-width: 768px) {
+  .dropdown {
+    top: -500%;
+    left: 63%;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .dropdown {
+    top: -470%;
+    left: 55.5%;
+  }
 }
