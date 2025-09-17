@@ -1,27 +1,36 @@
 import Section from "@/components/Section/Section";
 import EditProfileClient from "./EditProfile.client";
-import Container from "@/components/Container/Container";
 import css from "./EditProfilePage.module.css";
 import Image from "next/image";
+import Container from "@/components/Container/Container";
 
 export default function EditProfilePage() {
   return (
-    <Section>
-      <div className={css.onBoardingWrapper}>
+    <div className={css.pageContainer}>
+      <Section>
         <Container>
-          <div className={css.form}>
-            <h1 className={css.title}>Давайте познаймимось ближче</h1>
-            <EditProfileClient />
+          <div className={css.leftPanel}>
+            <div className={css.formWrapper}>
+              <h1 className={css.title}>Давайте познаймимось ближче</h1>
+              <EditProfileClient />
+            </div>
           </div>
         </Container>
+      </Section>
+
+      <div className={css.rightPanel}>
         <Image
           className={css.image}
-          src={"/sign-up-add.jpg"}
+          src="/sign-up-add.jpg"
           alt="Tree"
-          width={720}
-          height={900}
+          fill
+          priority
+          style={{
+            objectFit: "cover",
+            objectPosition: "center",
+          }}
         />
       </div>
-    </Section>
+    </div>
   );
 }

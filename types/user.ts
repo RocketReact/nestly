@@ -6,6 +6,7 @@ export interface User {
   dueDate: string;
   babyGender: string;
   theme?: string;
+  curWeekNumber?: number;
 }
 
 export interface LoginData {

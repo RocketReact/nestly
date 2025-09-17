@@ -11,7 +11,7 @@ import {
   FieldProps,
 } from "formik";
 import * as Yup from "yup";
-import { nextServer } from "@/lib/api/api";
+import { api } from "@/lib/api/api";
 import toast from "react-hot-toast";
 import css from "./DiaryEntryForm.module.css";
 import { IoIosArrowDown } from "react-icons/io";
@@ -131,9 +131,7 @@ export const DiaryEntryForm: React.FC<DiaryEntryFormProps> = ({
       console.log(
         `[emotions] fetchPage start -> page=${nextPage}, append=${append}`
       );
-      const res = await nextServer.get(
-        `/emotions?page=${nextPage}&limit=${limit}`
-      );
+      const res = await api.get(`/emotions?page=${nextPage}&limit=${limit}`);
       console.log("[emotions] raw response:", res.data);
 
       const parsed = parseEmotions(res.data);

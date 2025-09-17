@@ -30,8 +30,8 @@ export default function DiaryEntryCard({ entry, onClick }: Props) {
           {new Date(entry.date).toLocaleDateString()}
         </p>
       </div>
-      <div className={css.diaryEmotionsWrapper}>
-        <ul>
+      <div>
+        <ul className={css.diaryEmotionsWrapper}>
           {entry.emotions.map((emo, index) => (
             <li key={`${emo._id}-${index}`} className={css.emotionsItem}>
               {emo.title}

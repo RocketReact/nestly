@@ -6,15 +6,16 @@
   color: var(--color-scheme-text);
   font-family: var(--font-comfortaa);
 }
+
 .greetingBlock {
   padding-top: 24px;
-  padding-left: 32px;
-  padding-right: 32px;
+  width: 100%;
 }
 .greetingBlock {
-  width: 100vw;
+  width: 100%;
   max-width: 1128px;
   margin-bottom: 16px;
+  margin-top: 16px;
 }
 @media only screen and (min-width: 1440px) {
   .title {

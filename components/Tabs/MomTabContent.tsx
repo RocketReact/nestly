@@ -5,6 +5,7 @@ import css from "./Tabs.module.css";
 import { ImSpoonKnife } from "react-icons/im";
 import { CiDumbbell } from "react-icons/ci";
 import { LiaCouchSolid } from "react-icons/lia";
+import TasksReminderCard from "../TasksReminderCard/TasksReminderCard";
 
 type Props = {
   data: MomData;
@@ -54,7 +55,8 @@ const MomTabContent: React.FC<Props> = ({ data }) => {
           </ul>
         </div>
       </div>
-      <div className={clsx(css["task-cont"])}>Важливі завдання</div>
+
+      <TasksReminderCard />
     </div>
   );
 };

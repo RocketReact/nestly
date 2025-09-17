@@ -11,7 +11,7 @@ export async function GET(request:NextRequest) {
   try {
     const cookieStore = await cookies();
     const page = Number(request.nextUrl.searchParams.get('page') ?? 1);
-    const limit = Number(request.nextUrl.searchParams.get('limit') ?? 10);
+    const limit = Number(request.nextUrl.searchParams.get('limit') ?? 100);
     const sortOrder = String(request.nextUrl.searchParams.get('sortOrder') ?? "asc");  
 
       const res = await api.get('tasks', {

@@ -4,7 +4,7 @@ import { useState } from "react";
 import css from "./FeelingCheckCard.module.css";
 import { useAuthStore } from "@/lib/store/authStore";
 import { useRouter } from "next/navigation";
-// import { AddDiaryEntryModal } from '@/components/AddDiaryEntryModal'
+import { DiaryEntryModal } from "../DiaryEntryModal/DiaryEntryModal";
 
 export default function FeelingCheckCard() {
   const router = useRouter();
@@ -29,7 +29,16 @@ export default function FeelingCheckCard() {
       <button type="button" className={css.button} onClick={() => onClick()}>
         Зробити запис у щоденник
       </button>
-      {/* {modalOpen && <AddDiaryEntryModal setModal={setModal} />} */}
+      {modalOpen && (
+        <DiaryEntryModal
+          isOpen={modalOpen}
+          onClose={() => setModal(false)}
+          onSuccess={() => {
+            setModal(false);
+            router.push("/diary");
+          }}
+        />
+      )}
     </div>
   );
 }

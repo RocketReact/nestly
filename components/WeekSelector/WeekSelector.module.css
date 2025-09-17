@@ -7,6 +7,8 @@
   margin-bottom: 15.2px;
   margin-right: -20px;
   margin-left: -20px;
+  position: relative;
+  padding: 0;
 }
 
 ::-webkit-scrollbar {
@@ -16,4 +18,20 @@
 .list-item {
   flex-shrink: 0;
   list-style: none;
+  padding: 0;
+}
+
+@media screen and (min-width: 768px) {
+  .list {
+    margin-right: -32px;
+    margin-left: -32px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .list {
+    width: 1111px;
+    /* margin-right: -31px;
+    margin-left: -31px; */
+  }
 }

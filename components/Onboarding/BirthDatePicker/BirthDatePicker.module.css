@@ -20,7 +20,8 @@
 }
 
 .datepickerWrapper :global(.react-datepicker__input-container input) {
-    width: 100%;
+    width: 480px;
+    height: 40px;
     min-height: 40px;
     padding: 8px 12px;
     background: var(--input-color);

@@ -14,7 +14,7 @@ export default function Header() {
       <Container>
         <nav className={css.headerNav}>
           <Link href="/">
-            <Image src="/logo.svg" width={84} height={36} alt="Logo" />
+            <Image src="/logo.svg" width={84} height={36} alt="Logo" priority />
           </Link>
           <button
             type="button"

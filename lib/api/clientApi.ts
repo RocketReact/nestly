@@ -1,4 +1,4 @@
-import { nextServer } from "./api";
+import { api } from "./api";
 import { User } from "@/types/user";
 import { DiaryEntry, GetDiaryEntriesRep } from "@/types/note";
 import type { Task } from "@/types/task";
@@ -7,7 +7,7 @@ import { BabyData, MomData } from "./serverApi";
 
 import { GreetingData } from "@/types/greeting";
 
-interface GetTasksRep {
+export interface GetTasksRep {
   tasks: Task[];
   totalCount: number;
   totalPages: number;
@@ -33,23 +33,22 @@ interface GetWeekGreetingRep {
   momHint: string;
 }
 
-interface GetWeekBabyInfoRep {
-  analogy: string;
-  image: string;
-  description: string[];
-  interestingFact: string;
-}
+//interface GetWeekBabyInfoRep {
+//  analogy: string;
+//  image: string;
+//  description: string[];
+//  interestingFact: string;
+//}
+//interface GetWeekMomInfoRep {
+//  feelings: { states: string[]; sensationDescr: string };
+//  comfortTips: { category: string; tip: string }[];
+//}
 interface GetEmotionsRep {
   emotions: { _id: string; name: string }[];
   totalCount: number;
   totalPages: number;
   page: number;
   limit: number;
-}
-
-interface GetWeekMomInfoRep {
-  feelings: { states: string[]; sensationDescr: string };
-  comfortTips: { category: string; tip: string }[];
 }
 
 // ? AUTH ENDPOINTS
@@ -59,7 +58,7 @@ export const register = async (body: {
   email: string;
   password: string;
 }): Promise<void> => {
-  const { data } = await nextServer.post<void>("/auth/register", body);
+  const { data } = await api.post<void>("/auth/register", body);
   return data;
 };
 
@@ -67,12 +66,12 @@ export const login = async (body: {
   email: string;
   password: string;
 }): Promise<User> => {
-  const { data } = await nextServer.post<User>("/auth/login", body);
+  const { data } = await api.post<User>("/auth/login", body);
   return data;
 };
 
 export const logout = async (): Promise<void> => {
-  const { data } = await nextServer.post<void>("/auth/logout");
+  const { data } = await api.post<void>("/auth/logout");
   return data;
 };
 
@@ -81,14 +80,14 @@ interface CheckSessionRequest {
 }
 
 export const checkSession = async () => {
-  const { data } = await nextServer.get<CheckSessionRequest>("/auth/session");
+  const { data } = await api.get<CheckSessionRequest>("/auth/session");
   return data.success;
 };
 
 // ? Profile
 
 export const getProfile = async (): Promise<User> => {
-  const { data } = await nextServer.get<User>("/users/current");
+  const { data } = await api.get<User>("/users/current");
   return data;
 };
 
@@ -99,25 +98,29 @@ export const updateProfile = async (body: {
   dueDate?: string;
   babyGender?: string;
 }) => {
-  const { data } = await nextServer.patch<User>("/users/current", body);
+  const { data } = await api.patch<User>("/users/current", body);
   return data;
 };
 
-export const updateAvatar = async (avatar: File): Promise<User> => {
-  const formData = new FormData();
-  formData.append("avatar", avatar);
-  const res = await nextServer.patch<User>("/users/current/avatars", formData);
-  return res.data;
-};
+//export const updateAvatar = async (avatar: File): Promise<User> => {
+//  const formData = new FormData();
+//  formData.append("avatar", avatar);
+//  const res = await api.patch<User>("/users/current/avatars", formData);
+//  return res.data;
+//};
 
+export const updateAvatar = async (file: File): Promise<User> => {
+  const formData = new FormData();
+  formData.append("avatar", file);
+
+  const { data } = await api.patch<User>("/users/current/avatars", formData);
+
+  return data;
+};
 // ? TASK ENDPOINTS
 
-export const getTasks = async (params?: {
-  page?: number;
-  limit?: number;
-  sortOrder?: "asc" | "desc";
-}): Promise<GetTasksRep> => {
-  const { data } = await nextServer.get<GetTasksRep>("/tasks", { params });
+export const getTasks = async (): Promise<GetTasksRep> => {
+  const { data } = await api.get<GetTasksRep>("/tasks");
   return data;
 };
 
@@ -125,7 +128,7 @@ export const updateTaskById = async (
   taskId: string,
   body: { isDone: boolean }
 ): Promise<UpdateTaskByIdRep> => {
-  const { data } = await nextServer.patch<UpdateTaskByIdRep>(
+  const { data } = await api.patch<UpdateTaskByIdRep>(
     `/tasks/status/${taskId}`,
     body
   );
@@ -136,7 +139,7 @@ export const createTask = async (body: {
   name: string;
   date: string;
 }): Promise<Task> => {
-  const { data } = await nextServer.post<Task>("/tasks", body);
+  const { data } = await api.post<Task>("/tasks", body);
   return data;
 };
 
@@ -147,7 +150,7 @@ export const createDiaryEntry = async (body: {
   description: string;
   emotions: string[];
 }): Promise<DiaryEntry> => {
-  const { data } = await nextServer.post<DiaryEntry>("/diary", body);
+  const { data } = await api.post<DiaryEntry>("/diary", body);
   return data;
 };
 
@@ -156,7 +159,7 @@ export const getDiaryEntries = async (params?: {
   limit?: number;
   sortOrder?: "asc" | "desc";
 }): Promise<GetDiaryEntriesRep> => {
-  const { data } = await nextServer.get<GetDiaryEntriesRep>("/diary", {
+  const { data } = await api.get<GetDiaryEntriesRep>("/diary", {
     params,
   });
   return data;
@@ -166,32 +169,28 @@ export const updateDiaryEntry = async (
   noteId: string,
   body: { title: string; description: string; emotions: string[] }
 ): Promise<DiaryEntry> => {
-  const { data } = await nextServer.patch<DiaryEntry>(`/diary/${noteId}`, body);
+  const { data } = await api.patch<DiaryEntry>(`/diary/${noteId}`, body);
   return data;
 };
 export const deleteDiaryEntry = async (
   noteId: string
 ): Promise<DeleteDiaryEntryRep> => {
-  const { data } = await nextServer.delete<DeleteDiaryEntryRep>(
-    `/diary/${noteId}`
-  );
+  const { data } = await api.delete<DeleteDiaryEntryRep>(`/diary/${noteId}`);
   return data;
 };
 export async function fetchDiaryById(noteId: string): Promise<DiaryEntry> {
-  const { data } = await nextServer.get<DiaryEntry>(`/diary/${noteId}`);
+  const { data } = await api.get<DiaryEntry>(`/diary/${noteId}`);
   return data;
 }
 // ? Weeks endpoints
 
 export const getWeekGreeting = async (): Promise<GetWeekGreetingRep> => {
-  const { data } = await nextServer.get<GetWeekGreetingRep>("/weeks/greeting");
+  const { data } = await api.get<GetWeekGreetingRep>("/weeks/greeting");
   return data;
 };
 
 export const getWeekGreetingPublic = async (): Promise<GetWeekGreetingRep> => {
-  const { data } = await nextServer.get<GetWeekGreetingRep>(
-    "/weeks/greeting/public"
-  );
+  const { data } = await api.get<GetWeekGreetingRep>("/weeks/greeting/public");
   return data;
 };
 
@@ -201,7 +200,7 @@ export const getEmotions = async (params?: {
   page?: number;
   limit?: number;
 }): Promise<GetEmotionsRep> => {
-  const { data } = await nextServer.get("/emotions", { params });
+  const { data } = await api.get("/emotions", { params });
   return data;
 };
 
@@ -210,7 +209,7 @@ export const getWeekInfoBaby = async ({
 }: {
   weekNumber: string;
 }): Promise<BabyData> => {
-  const { data } = await nextServer.get(`/weeks/${weekNumber}/baby`);
+  const { data } = await api.get(`/weeks/${weekNumber}/baby`);
   return data;
 };
 
@@ -219,17 +218,17 @@ export const getWeekInfoMom = async ({
 }: {
   weekNumber: string;
 }): Promise<MomData> => {
-  const { data } = await nextServer.get(`/weeks/${weekNumber}/mom`);
+  const { data } = await api.get(`/weeks/${weekNumber}/mom`);
   return data;
 };
 
 /////////////////////////ruslan//////////////////////////
 export const getGreeting = async (): Promise<GreetingData> => {
-  const { data } = await nextServer.get<GreetingData>("/weeks/greeting");
+  const { data } = await api.get<GreetingData>("/weeks/greeting");
   return data;
 };
 export const getPublicGreeting = async (): Promise<GreetingData> => {
-  const { data } = await nextServer.get<GreetingData>("/weeks/greeting/public");
+  const { data } = await api.get<GreetingData>("/weeks/greeting/public");
   return data;
 };
 /////////////////////////ruslan//////////////////////////

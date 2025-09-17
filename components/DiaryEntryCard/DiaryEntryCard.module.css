@@ -30,6 +30,8 @@
     font-size: 16px;
     line-height: 1.6;
     color: #000;
+    overflow-wrap: anywhere;
+    white-space: normal;
   }
 
   .diaryNoteDate {
@@ -45,6 +47,7 @@
     justify-content: flex-start;
     flex-direction: row;
     gap: 8px;
+    flex-wrap: wrap;
   }
 
   .emotionsItem {
@@ -72,5 +75,21 @@
 }
 
 /* DESC STYLES */
-@media screen and (min-width: 1163px) {
+@media screen and (min-width: 1440px) {
+  .diaryNoteWrapper {
+    width: 357px;
+  }
+
+  .diaryNoteTopWrapper {
+    width: 325px;
+    height: 29px;
+  }
+
+  .diaryNoteTitle {
+    font-size: 18px;
+  }
+
+  .diaryNoteDate {
+    font-size: 14px;
+  }
 }

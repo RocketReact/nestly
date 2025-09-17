@@ -133,6 +133,7 @@ img {
   /* Font variables */
   --text-tiny-normal: 400 10px / 1.6 "Lato", sans-serif;
   --text-small-normal: 400 12px/1.6 "Lato", sans-serif;
+  --text-small-medium: 500 14px / 1.6 "Lato", sans-serif;
   --text-regular-normal: 400 14px / 1.5 "Lato", sans-serif;
   --text-regular-semi-bold: 600 14px / 1.6 "Lato", sans-serif;
   --text-regular-medium: 500 14px / 1.6 "Lato", sans-serif;

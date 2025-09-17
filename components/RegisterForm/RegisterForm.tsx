@@ -4,11 +4,11 @@ import { useRouter } from "next/navigation";
 import css from "./RegisterForm.module.css";
 import { register } from "@/lib/api/clientApi";
 import { useState } from "react";
-import { ApiError } from "next/dist/server/api-utils";
 import { Formik, Form, Field, type FormikHelpers, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import Link from "next/link";
 import { RegisterData } from "@/types/user";
+import "izitoast/dist/css/iziToast.min.css";
 
 const RegisterForm = () => {
   const router = useRouter();
@@ -66,9 +66,15 @@ const RegisterForm = () => {
       //      console.log("Registration values:", values);
       await register(values);
       router.push("/profile/edit");
-    } catch (error) {
-      setError((error as ApiError).message ?? "Помилка реєстрації");
-      actions.setFieldError("general", "Сталася помилка при реєстрації");
+    } catch {
+      setError("Щось пішло не так, спробуйте ще раз");
+      import("izitoast").then((iziToast) => {
+        iziToast.default.error({
+          title: "Помилка",
+          message: "Сталася помилка при реєстрації",
+          position: "topRight",
+        });
+      });
     } finally {
       actions.setSubmitting(false);
     }

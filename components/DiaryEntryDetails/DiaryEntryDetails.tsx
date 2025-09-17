@@ -2,41 +2,49 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useMediaQuery } from "react-responsive";
 import type { DiaryEntry } from "@/types/note";
 import ConfirmationModal from "../ConfirmationModal/ConfirmationModal";
-import css from "./DiaryEntryDetails.module.css";
-import { TbEdit } from "react-icons/tb";
-import { MdOutlineDeleteForever } from "react-icons/md";
 import { DiaryEntryModal } from "../DiaryEntryModal/DiaryEntryModal";
 import { deleteDiaryEntry } from "@/lib/api/clientApi";
 import { useMutation } from "@tanstack/react-query";
+import { TbEdit } from "react-icons/tb";
+import { MdOutlineDeleteForever } from "react-icons/md";
+import css from "./DiaryEntryDetails.module.css";
 
 interface Props {
   entry: DiaryEntry;
+  onUpdate?: () => void; // колбек для десктопа
 }
 
-export default function DiaryEntryDetails({ entry }: Props) {
+export default function DiaryEntryDetails({ entry, onUpdate }: Props) {
   const [isEditModal, setIsEditModal] = useState(false);
   const [isDeleteModal, setIsDeleteModal] = useState(false);
   const router = useRouter();
+  const isDesktop = useMediaQuery({ minWidth: 1440 });
 
-  // Мутація видалення
   const deleteMutation = useMutation({
     mutationFn: async (id: string) => deleteDiaryEntry(id),
     onSuccess: () => {
       setIsDeleteModal(false);
-      router.push("/diary"); // перенаправляєм на загальний список
+      if (isDesktop) {
+        onUpdate?.(); // десктоп — обновляємо список
+      } else {
+        router.push("/diary"); // мобілка — редірект
+      }
     },
     onError: (err) => console.error("Помилка при видаленні:", err),
   });
 
-  const handleDeleteConfirm = () => {
-    deleteMutation.mutate(entry._id);
-  };
+  const handleDeleteConfirm = () => deleteMutation.mutate(entry._id);
 
   const handleEditConfirm = () => {
     setIsEditModal(false);
-    router.push("/diary"); // перенаправляєм на загальний список
+    if (isDesktop) {
+      onUpdate?.(); // десктоп — обновляємо список
+    } else {
+      router.push("/diary"); // мобілка — редірект
+    }
   };
 
   return (
@@ -67,8 +75,8 @@ export default function DiaryEntryDetails({ entry }: Props) {
 
           <p className={css.diaryDetailsDescription}>{entry.description}</p>
 
-          <div className={css.diaryEmotionsWrapper}>
-            <ul>
+          <div>
+            <ul className={css.diaryEmotionsWrapper}>
               {entry.emotions.map((emo, index) => (
                 <li key={`${emo._id}-${index}`} className={css.emotionsItem}>
                   {emo.title}

@@ -16,7 +16,6 @@
 
 .main {
   grid-column: 2;
-  padding: 24px;
 }
 
 /* Mobile / tablet */
@@ -33,6 +32,10 @@
 
   .main {
     grid-column: 1;
-    padding: 16px;
+  }
+}
+@media (max-width: 1440px) {
+  .layout {
+    display: grid;
   }
 }

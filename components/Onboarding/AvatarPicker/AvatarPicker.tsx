@@ -2,14 +2,14 @@
 import { useState } from "react";
 import css from "./AvatarPicker.module.css";
 import Image from "next/image";
-import { useOnboardingStore } from "@/lib/store/onboardingStore";
 import { updateAvatar } from "@/lib/api/clientApi";
+import { useUserStore } from "@/lib/store/userStore";
 
 export default function AvatarPicker() {
   const [error, setError] = useState("");
   const [isUploading, setIsUploading] = useState(false);
-  const avatar = useOnboardingStore((state) => state.avatarUrl);
-  const setAvatar = useOnboardingStore((state) => state.setAvatar);
+  const avatar = useUserStore((state) => state.avatarUrl);
+  const setAvatar = useUserStore((state) => state.setAvatar);
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -39,6 +39,7 @@ export default function AvatarPicker() {
         console.error(error);
         setError("Помилка завантаження фото");
       } finally {
+        console.log("Загружаем файл:", file.name, file.size, file.type);
         setIsUploading(false);
       }
     }

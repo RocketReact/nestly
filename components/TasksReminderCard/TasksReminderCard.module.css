@@ -18,6 +18,12 @@
   letter-spacing: 0.01em;
   color: var(--font-color);
 }
+.sectionTitle {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 160%;
+  color: var(--font-color);
+}
 .addButton {
   border-radius: 100px;
   padding: 8px;
@@ -86,7 +92,45 @@
   font-size: 14px;
   text-decoration: line-through;
 }
-
+.noTasksTitle {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 160%;
+  color: var(--font-color);
+  margin-bottom: 4px;
+}
+.noTasksText {
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--font-color);
+  margin-bottom: 16px;
+}
+.noTasksButton {
+  background: var(--btn-color);
+  border-bottom: var(--btn-color-bottom);
+  border-radius: 100px;
+  padding: 10px 24px;
+  width: 268px;
+  height: 42px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 160%;
+  color: var(--font-color);
+  transition:
+    background var(--primary-transition),
+    border-bottom var(--primary-transition);
+  cursor: pointer;
+}
+.noTasksButton:hover,
+.noTasksButton:focus {
+  pointer-events: all;
+  background: var(--btn-hover);
+  border-bottom: var(--btn-hover-bottom);
+}
+.noTasksButton:active {
+  background: var(--btn-active);
+  border-bottom: var(--btn-active-bottom);
+}
 @media screen and (min-width: 768px) {
   /* ? Стилі не відрізняються по-моєму, якщо нічого не зміниться - медіа можна прибрати */
 }

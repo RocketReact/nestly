@@ -16,6 +16,7 @@ import MomTabContent from "@/components/Tabs/MomTabContent";
 import Loader from "@/components/Loader/Loader";
 import Section from "@/components/Section/Section";
 import Container from "@/components/Container/Container";
+import GreetingBlock from "@/components/GreetingBlock/GreetingBlock";
 
 export default function JourneyDetails() {
   const [tabIndex, setTabIndex] = React.useState(0);
@@ -74,7 +75,9 @@ export default function JourneyDetails() {
   return (
     <>
       <Section>
+        <div></div>
         <Container>
+          <GreetingBlock />
           {pregnantData ? (
             <WeekSelector
               curWeekToPregnant={pregnantData.curWeekToPregnant}
@@ -88,7 +91,6 @@ export default function JourneyDetails() {
           ) : (
             <Loader styles={{ margin: "auto" }} />
           )}
-
           <CustomTabs
             items={tabData}
             tabsProps={{

@@ -4,14 +4,14 @@ import { useState } from "react";
 import ReactDatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import css from "./BirthDatePicker.module.css";
-import { useOnboardingStore } from "@/lib/store/onboardingStore";
+import { useUserStore } from "@/lib/store/userStore";
 
 registerLocale("uk", uk);
 
 export default function BirthDatePicker() {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
-  const setDueDate = useOnboardingStore((state) => state.setDueDate);
-  const dueDate = useOnboardingStore((state) => state.dueDate);
+  const setDueDate = useUserStore((state) => state.setDueDate);
+  const dueDate = useUserStore((state) => state.dueDate);
 
   const handleChange = (date: Date | null) => {
     if (date) {

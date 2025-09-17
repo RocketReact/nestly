@@ -16,6 +16,7 @@
     "date-fns": "^4.1.0",
     "formik": "^2.4.6",
     "izitoast": "^1.4.0",
+    "lottie-react": "^2.4.1",
     "modern-normalize": "^3.0.1",
     "next": "15.5.2",
     "react": "19.1.0",

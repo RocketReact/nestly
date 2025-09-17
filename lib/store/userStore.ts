@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-interface OnboardingUser {
+interface UserStore {
   dueDate: string;
   babyGender: string;
   avatarUrl: string;
@@ -11,7 +11,7 @@ interface OnboardingUser {
   setAvatar: (gender: string) => void;
 }
 
-export const useOnboardingStore = create<OnboardingUser>()(
+export const useUserStore = create<UserStore>()(
   persist(
     (set) => ({
       dueDate: "",

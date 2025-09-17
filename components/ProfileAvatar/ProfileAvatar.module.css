@@ -5,6 +5,7 @@
   flex-direction: column;
   align-items: center;
   margin-bottom: 32px;
+  margin-top: 16px;
 }
 
 .wrapper {
@@ -12,40 +13,65 @@
 }
 
 .avatarUser {
+  width: 132px;
+  height: 132px;
   border-radius: 50%;
   object-fit: cover;
 }
 
 .nameUser {
+  font-family: var(--second-family);
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 140%;
+  letter-spacing: 0.01em;
+  text-align: center;
+  color: var(--color-scheme-text);
   margin-top: 16px;
   margin-bottom: 4px;
-  font-size: 20px;
-  font-weight: 600;
-  color: #111;
-  text-align: center;
 }
 
 .emailUser {
-  margin: 0 0 20px 0;
+  margin-bottom: 20px;
+  font-family: var(--font-family);
+  font-weight: 400;
   font-size: 14px;
-  color: #666;
+  line-height: 150%;
+  text-align: center;
+  color: var(--color-scheme-text);
   text-align: center;
 }
 
 .btn {
-  width: 100%;
-  padding: 14px;
-  border: none;
-  border-radius: 100px;
-  background: #f3f3f3;
+  font-family: var(--font-family);
   font-size: 14px;
   font-weight: 500;
-  color: #111;
-  transition: background 0.2s ease;
+  line-height: 160%;
+  padding: 8px 10px;
+  width: 100%;
+  border-radius: 100px;
+  border-bottom: 4px solid var(--opacity-neutral-darkest-15);
+  background: var(--opacity-neutral-darkest-5);
+  color: var(--color-scheme-text);
+  transition:
+    background 500ms linear,
+    border-color 500ms linear,
+    opacity 500ms linear;
 }
 
-.btn:hover {
-  background: #e6e6e6;
+.btn:hover,
+.btn:focus {
+  background: var(--color-scheme-foreground);
+}
+
+.btn:active {
+  background: var(--color-scheme-accent);
+  border-color: transparent;
+}
+
+.btn:disabled {
+  background: var(--opacity-neutral-darkest-5);
+  opacity: 0.3;
 }
 
 /* tablet */
@@ -64,5 +90,13 @@
 
   .btn {
     width: 218px;
+  }
+}
+
+/* desktop */
+
+@media screen and (min-width: 1440px) {
+  .btn {
+    font-size: 16px;
   }
 }

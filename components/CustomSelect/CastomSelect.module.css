@@ -1,0 +1,126 @@
+/* mobile */
+.customSelect {
+  position: relative;
+  width: 100%;
+}
+
+.selectButton {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 150%;
+  color: var(--opacity-neutral-darkest-60);
+  border: 2px solid var(--opacity-transparent);
+  padding: 8px 12px;
+  border-radius: 12px;
+  background: var(--opacity-neutral-darkest-5);
+  transition: border-color 500ms linear;
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.selectButton:hover:not(.select-disabled) {
+  border-color: var(--color-scheme-accent);
+}
+
+.selectButton:focus {
+  border-color: var(--color-scheme-accent);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.selectError {
+  border-color: #dc2626;
+}
+
+.selectError:focus {
+  border-color: #dc2626;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+}
+
+.selectDisabled {
+  background-color: #f9fafb;
+  color: #9ca3af;
+  cursor: not-allowed;
+}
+
+.selectText {
+  color: #111827;
+}
+
+.selectPlaceholder {
+  color: #9ca3af;
+}
+
+.selectArrow {
+  width: 20px;
+  height: 20px;
+  transform: rotate(0deg);
+  transition: transform 0.2s ease;
+  margin-left: 8px;
+  flex-shrink: 0;
+}
+
+.selectArrowOpen {
+  transform: rotate(180deg);
+}
+
+.selectDropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  margin-top: 4px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.selectOption {
+  width: 100%;
+  padding: 12px 16px;
+  text-align: left;
+  background-color: transparent;
+  color: #111827;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.2s ease;
+  font-family: inherit;
+}
+
+.selectOption:hover {
+  background-color: #f9fafb;
+}
+
+.selectOptionSelected {
+  background-color: #f3f4f6;
+}
+
+.selectOption:first-child {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.selectOption:last-child {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+/* tablet */
+
+@media (max-width: 768px) {
+  .selectButton {
+  }
+
+  .selectOption {
+  }
+}

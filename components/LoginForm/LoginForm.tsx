@@ -9,6 +9,7 @@ import { LoginData } from "@/types/user";
 import Link from "next/link";
 import { Formik, Form, Field, type FormikHelpers, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import "izitoast/dist/css/iziToast.min.css";
 
 const LoginForm = () => {
   const router = useRouter();
@@ -59,8 +60,15 @@ const LoginForm = () => {
         setUser(user);
         router.push("/");
       }
-    } catch (error) {
-      setError("Щось пішло не так. Перевірте введені дані.");
+    } catch {
+      setError("Щось пішло не так, спробуйте ще раз");
+      import("izitoast").then((iziToast) => {
+        iziToast.default.error({
+          title: "Помилка",
+          message: "Щось пішло не так. Перевірте введені дані.",
+          position: "topRight",
+        });
+      });
     } finally {
       setSubmitting(false);
     }
@@ -110,7 +118,7 @@ const LoginForm = () => {
             {isSubmitting ? "Загрузка..." : "Увійти"}
           </button>
 
-          {error && <span>{error}</span>}
+          {error && <span className={css.error}>{error}</span>}
 
           <div className={css.spanText}>
             <span>Немає аккаунту? </span>
